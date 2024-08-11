@@ -1,9 +1,16 @@
-# http://ricediversity.org/data/sets_hydra/HDRA-G6-4-RDP1-RDP2-NIAS-2.tar.gz
-# http://ricediversity.org/data/sets_hydra/HDRA-G6-4-SNP-MAP.tar.gz
-# http://ricediversity.org/data/sets_hydra/phenoAvLen_G6_4_RDP12_ALL.tar.gz
+
+#Download reproduction material (data)
+#system("wget https://github.com/MingLiang-Li/GWAS_protocol/blob/main/beagle.jar")
+#system("wget http://ricediversity.org/data/sets_hydra/HDRA-G6-4-RDP1-RDP2-NIAS-2.tar.gz")
+#system("wget http://ricediversity.org/data/sets_hydra/HDRA-G6-4-SNP-MAP.tar.gz")
+#system("wget http://ricediversity.org/data/sets_hydra/phenoAvLen_G6_4_RDP12_ALL.tar.gz")
+
+#Extract the data
+#system("tar -xvf  HDRA-G6-4-RDP1-RDP2-NIAS-2.tar.gz")
+#system("tar zxvf HDRA-G6-4-SNP-MAP.tar.gz")
+#system("tar zxvf phenoAvLen_G6_4_RDP12_ALL.tar.gz")
 
 #please replace all the pathway in this script to the pathway saved your data
-setwd("~/Downloads")
 
 #create a new map file for PLINK binary format to replace allele from A/B to G/C/A/T
 map=read.table("HDRA-G6-4-SNP-MAP/HDRA-G6-4-final-snp-map.tsv",head=F)
@@ -13,7 +20,7 @@ write.table(bim,"HDRA-G6-4-RDP1-RDP2-NIAS/HDRA-G6-4-RDP1-RDP2-NIAS.bim",quote=F,
 
 #convert PLINK format to VCF format
 #Ensure the 'blink' file has executable permissions
-#system("chmod +x  blink")
+system("chmod +x  blink")
 system("./blink --file HDRA-G6-4-RDP1-RDP2-NIAS/HDRA-G6-4-RDP1-RDP2-NIAS --plink  --compress --noimp --out rice")
 system("./blink --file rice --uvcf --recode --out rice")
 
